@@ -1,44 +1,49 @@
 import { getUsers } from "../api/api";
 import { BsFillTrashFill } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai"
+import { FaUserCircle } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
+import { DeleteModal } from "@/components/DeleteModal";
 
 export default function Users(props) {
   const { users } = props;
-
+  
   return (
     <>
-      <div className="relative overflow-x-auto px-4 md:px-20 py-5 min-h-screen">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-gray-100 font-bold text-gray-600 uppercase">
-            <tr className="border-b">
-              <th className="px-6 py-3">Name</th>
-              <th className="px-6 py-3">Email</th>
-              <th className="px-6 py-3">Gender</th>
-              <th className="px-6 py-3">Status</th>
-              <th className="px-6 py-3">Action</th>
-            </tr>
-          </thead>
-          <tbody className="font-medium">
+      <div className="px-4 md:px-20 py-5 bg-gray-200 min-h-screen">
+        <h1 className="text-4xl text-center font-medium">List of Users</h1>
+        <div className="w-full relative overflow-x-auto my-5">
+          <div className="grid gap-4 grid-cols-1 lg:grid-cols-2">
             {users.map((user) => (
-              <tr key={user.id} className="border-b">
-                <td className="px-6 py-3">{user.name}</td>
-                <td className="px-6 py-3">{user.email}</td>
-                <td className="px-6 py-3">{user.gender}</td>
-                <td className="px-6 py-3">{user.status}</td>
-                <td className="px-6 py-3">
-                  <div className="flex items-center gap-x-2">
-                    <button>
-                      <AiFillEdit className="text-blue-300 hover:text-blue-500 text-lg" />
-                    </button>
-                    <button>
-                      <BsFillTrashFill className="text-red-500 hover:text-red-700 text-lg" />
-                    </button>
+              <div key={user.id} className="bg-white rounded-lg">
+                <div className="flex flex-col divide-y-2 divide-gray-300">
+                  <div className="flex items-center gap-2 p-4">
+                    <FaUserCircle className="w-24 h-24" />
+                    <div>
+                      <div className="text-purple-600 text-md font-bold">
+                        {user.name}
+                      </div>
+                      <div className="text-gray-600 text-sm font-medium">
+                        {user.email}
+                      </div>
+                      <div className="text-sm">{user.gender}</div>
+                      <div className="text-sm">{user.status}</div>
+                    </div>
                   </div>
-                </td>
-              </tr>
+                  <div className="p-4">
+                    <div className="flex items-center justify-center gap-x-2">
+                      <button>
+                        <AiFillEdit className="text-blue-500 hover:text-blue-700 text-lg" />
+                      </button>
+                      <button>
+                        <BsFillTrashFill className="text-red-500 hover:text-red-700 text-lg" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </>
   );
