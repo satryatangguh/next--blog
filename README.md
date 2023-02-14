@@ -4,9 +4,10 @@ Next Blog is blog website that created using Next JS and Tailwind CSS. This blog
 https://next-blog-omega-blue.vercel.app/users
 
 ## Getting Started
-`git clone https://github.com/satryatangguh/next-blog.git`
-`cd next-blog`
-`npm run dev`
+- Clone the project `git clone https://github.com/satryatangguh/next-blog.git`
+- Open the repository `cd next-blog`
+- Install directory `npm i`
+- Run the project `npm run dev`
 
 ## Library and Framework
 - Next JS
