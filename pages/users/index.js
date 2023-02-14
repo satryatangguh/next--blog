@@ -2,11 +2,32 @@ import { getUsers } from "../api/api";
 import { BsFillTrashFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
-import { DeleteModal } from "@/components/DeleteModal";
+import axios from "axios";
+import { useEffect } from "react";
 
 export default function Users(props) {
   const { users } = props;
-  
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  const handleDelete = (id) => {
+    if (window.confirm(`Are you sure want to delete this user?`)) {
+      axios({
+        method: "delete",
+        url: `${process.env.NEXT_PUBLIC_APIURL}/public/v2/users/${id}`,
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_APITOKEN}`,
+        },
+      }).then((response) => {
+        getUsers();
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+  };
+
   return (
     <>
       <div className="px-4 md:px-20 py-5 bg-gray-200 min-h-screen">
@@ -34,7 +55,7 @@ export default function Users(props) {
                       <button>
                         <AiFillEdit className="text-blue-500 hover:text-blue-700 text-lg" />
                       </button>
-                      <button>
+                      <button onClick={() => handleDelete(user.id)}>
                         <BsFillTrashFill className="text-red-500 hover:text-red-700 text-lg" />
                       </button>
                     </div>

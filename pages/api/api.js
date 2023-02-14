@@ -48,10 +48,10 @@ export async function getUsers(page) {
     });
 }
 
-export async function deleteUser(user_id) {
-  return await axios
-    .delete(`${process.env.NEXT_PUBLIC_APIURL}/public/v2/users/${user_id}?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`)
-    .catch((error) => {
-      return error;
-    });
-}
+// export async function deleteUser(user_id) {
+//   return await axios
+//     .delete(`${process.env.NEXT_PUBLIC_APIURL}/public/v2/users/${user_id}?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`)
+//     .catch((error) => {
+//       return error;
+//     });
+// }
