@@ -1,9 +1,14 @@
 import axios from "axios";
 import { BiComment } from "react-icons/bi";
+import Seo from "@/components/Seo";
 
 export default function postById({ post, postComments, user }) {
   return (
     <>
+      <Seo
+        title={post.title}
+        description={post.title}
+      />
       <div className="px-4 md:px-20 py-2 bg-gray-200 min-h-screen">
         <div className="bg-white my-5 text-justify rounded-xl drop-shadow-lg lg:max-w-5xl mx-auto">
           <div className="p-5">

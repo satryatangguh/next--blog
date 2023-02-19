@@ -2,6 +2,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import axios from "axios";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 
 export default function Users({ users }) {
   const handleDelete = (id) => {
@@ -24,6 +25,7 @@ export default function Users({ users }) {
 
   return (
     <>
+      <Seo title="Welcome to Next Blog | Next Blog Users" description="Next Blog User Page"/>
       <div className="px-4 md:px-20 py-5 bg-gray-200 min-h-screen">
         <h1 className="text-4xl text-center font-medium">List of Users</h1>
         <div className="w-full relative overflow-x-auto my-5">

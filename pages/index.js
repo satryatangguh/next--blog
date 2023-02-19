@@ -1,9 +1,11 @@
 import axios from "axios";
 import Link from "next/link";
+import Seo from "@/components/Seo";
 
 export default function Home({ posts }) {
   return (
     <>
+      <Seo title="Welcome to Next Blog" description="Next Blog Home Page"/>
       <div className="px-4 md:px-20 py-2 bg-gray-200 min-h-screen">
         {posts.map((post) => (
           <div

@@ -1,10 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
 import { FaUserCircle, FaArrowLeft } from "react-icons/fa";
+import Seo from "@/components/Seo";
 
 export default function userById({ userDetails }) {
   return (
     <>
+      <Seo title={userDetails.name} description={userDetails.name}/>
       <div className="px-4 md:px-20 py-2 bg-gray-200 min-h-screen">
         <div className="bg-white my-5 rounded-xl drop-shadow-lg w-[440px] mx-auto divide-y-2 divide-gray-200">
           <div className="flex justify-start p-4">
