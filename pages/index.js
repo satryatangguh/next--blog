@@ -1,8 +1,7 @@
-import { getPosts } from "./api/api";
+import axios from "axios";
 import Link from "next/link";
 
-export default function Home(props) {
-  const { posts } = props;
+export default function Home({ posts }) {
   return (
     <>
       <div className="px-4 md:px-20 py-2 bg-gray-200 min-h-screen">
@@ -26,13 +25,15 @@ export default function Home(props) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await getPosts();
+export async function getServerSideProps(page) {
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_APIURL}/public/v2/posts?page=${page}&per_page=10?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`
+  );
   const posts = await res.data;
 
   return {
     props: {
-      posts,
+      posts: posts,
     },
   };
 }

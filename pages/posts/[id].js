@@ -1,10 +1,7 @@
-import { getPostById, getPostComments, getUser } from "../api/api";
+import axios from "axios";
 import { BiComment } from "react-icons/bi";
 
-export default function postById(props) {
-  const { post, postComments, user } = props;
-  console.log(postComments);
-  console.log(user)
+export default function postById({ post, postComments, user }) {
   return (
     <>
       <div className="px-4 md:px-20 py-2 bg-gray-200 min-h-screen">
@@ -44,17 +41,23 @@ export default function postById(props) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, user_id }) {
   // Post detail
-  const resPostByDetail = await getPostById(params.id);
+  const resPostByDetail = await axios.get(
+    `${process.env.NEXT_PUBLIC_APIURL}/public/v2/posts/${params.id}?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`
+  );
   const post = await resPostByDetail.data;
 
   // Post Comment
-  const resComments = await getPostComments(post.id);
+  const resComments = await axios.get(
+    `${process.env.NEXT_PUBLIC_APIURL}/public/v2/posts/${post.id}/comments?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`
+  );
   const postComments = await resComments.data;
 
   //Post User
-  const resUser = await getUser(post.user_id);
+  const resUser = await axios.get(
+    `${process.env.NEXT_PUBLIC_APIURL}/public/v2/users/${post.user_id}?access-token=${process.env.NEXT_PUBLIC_APITOKEN}`
+  );
   const user = await resUser.data;
 
   return {
