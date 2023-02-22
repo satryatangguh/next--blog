@@ -1,7 +1,7 @@
 Next Blog is blog website that created using Next JS and Tailwind CSS. This blog website using open API data from https://gorest.co.in/
 
 ## Demo
-https://next-blog-omega-blue.vercel.app/users
+https://next-blog-omega-blue.vercel.app
 
 ## Getting Started
 - Clone the project `git clone https://github.com/satryatangguh/next-blog.git`
