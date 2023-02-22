@@ -1,9 +1,7 @@
 import { useState } from "react";
 import {
-  AiFillEdit,
   AiFillDelete,
   AiFillEye,
-  AiOutlineUserAdd,
 } from "react-icons/ai";
 import axios from "axios";
 import Link from "next/link";
@@ -21,6 +19,16 @@ export default function Users({ users }) {
     status: "",
   });
 
+  const resetForm = () => {
+    setUserData({
+      ...userData,
+      name: "",
+      email: "",
+      gender: "",
+      status: "",
+    })
+  }
+
   const refreshData = () => {
     router.replace(router.asPath);
   };
@@ -28,7 +36,7 @@ export default function Users({ users }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_APIURL}/public/v2/users/`,
         userData,
         {
@@ -38,6 +46,7 @@ export default function Users({ users }) {
         }
       );
       refreshData();
+      resetForm();
     } catch (error) {
       console.error(error);
     }
@@ -155,14 +164,6 @@ export default function Users({ users }) {
                         data-tooltip-place="top"
                       />
                     </Link>
-                    <button>
-                      <AiFillEdit
-                        data-tooltip-id="action-tooltip"
-                        data-tooltip-content="Edit"
-                        data-tooltip-place="top"
-                        className="text-blue-500 hover:text-blue-700 text-lg"
-                      />
-                    </button>
                     <button onClick={() => deleteUser(user.id)}>
                       <AiFillDelete
                         data-tooltip-id="action-tooltip"
